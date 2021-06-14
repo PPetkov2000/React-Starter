@@ -1,7 +1,7 @@
 {
   "name": "react-starter",
   "version": "1.0.0",
-  "description": "Extend create-react-app",
+  "description": "Extend create-react-app with additional packages and components",
   "main": "index.js",
   "repository": {
     "type": "git",
