@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Extend create-react-app",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PPetkov2000/React-Starter"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
