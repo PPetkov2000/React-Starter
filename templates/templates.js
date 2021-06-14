@@ -19,5 +19,8 @@ module.exports = {
   },
   "hooks": {
     "useFetch.js": require("./hooks/useFetch.js")
+  },
+  "services": {
+    "users.js": require("./services/users.js")
   }
 }
