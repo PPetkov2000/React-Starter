@@ -6,6 +6,7 @@ module.exports = {
     "Message.js": require("./components/Message.js"),
     "Navigation.js": require("./components/Navigation.js"),
     "Footer.js": require("./components/Footer.js"),
+    "Forbidden.js": require("./components/Forbidden.js"),
   },
   "pages": {
     "Home.js": require("./pages/Home.js"),
