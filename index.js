@@ -8,13 +8,13 @@ const appName = process.argv[2]
 const appDirectory = `${process.cwd()}/${appName}`
 
 const run = async () => {
-  // const success = await createReactApp()
-  // if (!success) {
-  //   console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
-  //   return false;
-  // }
-  // await cdIntoNewApp()
-  // await installPackages()
+  const success = await createReactApp()
+  if (!success) {
+    console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
+    return false;
+  }
+  await cdIntoNewApp()
+  await installPackages()
   await updateTemplates()
   console.log("All done")
 }
