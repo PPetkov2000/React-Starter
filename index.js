@@ -8,13 +8,13 @@ const appName = process.argv[2]
 const appDirectory = `${process.cwd()}/${appName}`
 
 const run = async () => {
-  const success = await createReactApp()
-  if (!success) {
-    console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
-    return false;
-  }
-  await cdIntoNewApp()
-  await installPackages()
+  // const success = await createReactApp()
+  // if (!success) {
+  //   console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
+  //   return false;
+  // }
+  // await cdIntoNewApp()
+  // await installPackages()
   await updateTemplates()
   console.log("All done")
 }
@@ -68,6 +68,10 @@ const updateTemplates = () => {
             })
           })
         } else {
+          if (fileName.includes("css")) {
+            const [file, extension] = fileName.split(fileName[fileName.lastIndexOf(".")])
+            shell.mv(`${appDirectory}/src/${file}.css`, `${appDirectory}/src/${fileName}`)
+          }
           fs.writeFile(`${appDirectory}/src/${fileName}`, templates[fileName], function (err) {
             if (err) { return console.log(err) }
             res()
