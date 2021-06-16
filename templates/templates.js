@@ -1,6 +1,7 @@
 module.exports = {
   "index.js": require("./index.js"),
   "App.js": require("./App.js"),
+  "App.scss": require("./stylesheets/App.stylesheet.js"),
   "components": {
     "Loader.js": require("./components/Loader.js"),
     "Message.js": require("./components/Message.js"),
