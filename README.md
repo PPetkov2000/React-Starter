@@ -1,6 +1,6 @@
 ## Extend create-react-app with additonal packages and components
 
-### Installation
+### How to use it
 
 ```sh
 create-react-app-starter <app-name>
