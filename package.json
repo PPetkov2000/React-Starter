@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/PPetkov2000/React-Starter"
+    "url": "https://github.com/PPetkov2000/React-Starter.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
