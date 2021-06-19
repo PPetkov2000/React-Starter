@@ -2,10 +2,21 @@
 const shell = require('shelljs')
 const colors = require('colors')
 const fs = require('fs')
+const program = require("commander")
 const templates = require('./templates/templates.js')
+const reduxTemplates = require('./redux-templates/templates.js')
 
 const appName = process.argv[2]
 const appDirectory = `${process.cwd()}/${appName}`
+
+program
+  .option("-r, --redux", "Add Redux to your project")
+  .action((params) => {
+    if (params.redux) {
+      console.log("Redux option activated")
+    }
+  })
+  .parse(process.argv)
 
 const run = async () => {
   const success = await createReactApp()
@@ -16,11 +27,14 @@ const run = async () => {
   await cdIntoNewApp()
   await installPackages()
   await updateTemplates()
+  if (program.opts().redux) {
+    await addReduxTemplates()
+  }
   console.log("All done")
 }
 
 const createReactApp = () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (appName) {
       shell.exec(`npx create-react-app ${appName}`, () => {
         console.log("Created react app")
@@ -43,9 +57,9 @@ const cdIntoNewApp = () => {
 }
 
 const installPackages = () => {
-  return new Promise(resolve => {
-    console.log("\nInstalling react-router-dom, axios, node-sass\n".cyan)
-    shell.exec(`npm install --save react-router-dom axios node-sass`, () => {
+  return new Promise((resolve) => {
+    console.log(`\nInstalling react-router-dom, axios, node-sass${program.opts().redux ? ", react-redux, redux, redux-thunk, redux-devtools-extension" : ""}\n`.cyan)
+    shell.exec(`npm install --save react-router-dom axios node-sass${program.opts().redux ? " react-redux redux redux-thunk redux-devtools-extension" : ""}`, () => {
       console.log("\nFinished installing packages\n".green)
       resolve()
     })
@@ -53,15 +67,15 @@ const installPackages = () => {
 }
 
 const updateTemplates = () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const promises = []
     Object.keys(templates).forEach((fileName, i) => {
       promises[i] = new Promise(res => {
         if (typeof templates[fileName] === "object") {
-          fs.mkdir(`${appDirectory}/src/${fileName}`, function (err) {
+          fs.mkdir(`${appDirectory}/src/${fileName}`, (err) => {
             if (err) { return console.log(err) }
             Object.keys(templates[fileName]).forEach((file) => {
-              fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, templates[fileName][file], function (err) {
+              fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, templates[fileName][file], (err) => {
                 if (err) { return console.log(err) }
                 res()
               })
@@ -72,7 +86,43 @@ const updateTemplates = () => {
             const [file, extension] = fileName.split(fileName[fileName.lastIndexOf(".")])
             shell.mv(`${appDirectory}/src/${file}.css`, `${appDirectory}/src/${fileName}`)
           }
-          fs.writeFile(`${appDirectory}/src/${fileName}`, templates[fileName], function (err) {
+          fs.writeFile(`${appDirectory}/src/${fileName}`, templates[fileName], (err) => {
+            if (err) { return console.log(err) }
+            res()
+          })
+        }
+      })
+    })
+    Promise.all(promises).then(() => { resolve() })
+  })
+}
+
+const addReduxTemplates = () => {
+  const promises = []
+  return new Promise((resolve) => {
+    Object.keys(reduxTemplates).forEach((fileName, i) => {
+      promises[i] = new Promise((res) => {
+        if (typeof reduxTemplates[fileName] === "object") {
+          if (fs.existsSync(`${appDirectory}/src/${fileName}`)) {
+            Object.keys(reduxTemplates[fileName]).forEach((file) => {
+              fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, reduxTemplates[fileName][file], (err) => {
+                if (err) { return console.log(err) }
+                res()
+              })
+            })
+          } else {
+            fs.mkdir(`${appDirectory}/src/${fileName}`, (err) => {
+              if (err) { return console.log(err) }
+              Object.keys(reduxTemplates[fileName]).forEach((file) => {
+                fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, reduxTemplates[fileName][file], (err) => {
+                  if (err) { return console.log(err) }
+                  res()
+                })
+              })
+            })
+          }
+        } else {
+          fs.writeFile(`${appDirectory}/src/${fileName}`, reduxTemplates[fileName], (err) => {
             if (err) { return console.log(err) }
             res()
           })
