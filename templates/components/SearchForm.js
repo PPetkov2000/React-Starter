@@ -12,7 +12,7 @@ const SearchForm = () => {
   }
 
   return (
-    <form className={classes.search} onSubmit={searchHandler}>
+    <form onSubmit={searchHandler}>
       <input placeholder="Search..." value={keyword} onChange={(e) => setKeyword(e.target.value)} />
       <button type="submit">Search</button>
     </form>
