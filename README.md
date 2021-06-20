@@ -9,5 +9,6 @@ create-react-app-starter <app-name>
 ### Command Line Options
 
 ```sh
--r, --redux       Add Redux to your project
+-r, --redux       add redux to your project
+-h, --help        output usage information
 ```
