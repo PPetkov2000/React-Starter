@@ -21,6 +21,11 @@ module.exports = {
     "api-interceptors.js": require("./utils/api-interceptors.js"),
     "errorHandler.js": require("./utils/errorHandler.js"),
   },
+  "router": {
+    "Routes.js": require("./router/Routes.js"),
+    "PrivateRoute.js": require("./router/PrivateRoute.js"),
+    "AdminRoute.js": require("./router/AdminRoute.js"),
+  },
   "hooks": {
     "useFetch.js": require("./hooks/useFetch.js")
   },
