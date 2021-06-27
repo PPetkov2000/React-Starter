@@ -20,6 +20,7 @@ module.exports = {
     "api-instance.js": require("./utils/api-instance.js"),
     "api-interceptors.js": require("./utils/api-interceptors.js"),
     "errorHandler.js": require("./utils/errorHandler.js"),
+    "stringUtils.js": require("./utils/stringUtils.js"),
   },
   "router": {
     "Routes.js": require("./router/Routes.js"),
