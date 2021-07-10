@@ -28,7 +28,8 @@ module.exports = {
     "AdminRoute.js": require("./router/AdminRoute.js"),
   },
   "hooks": {
-    "useFetch.js": require("./hooks/useFetch.js")
+    "useFetch.js": require("./hooks/useFetch.js"),
+    "useLocalStorage.js": require("./hooks/useLocalStorage.js")
   },
   "services": {
     "users.js": require("./services/users.js")
