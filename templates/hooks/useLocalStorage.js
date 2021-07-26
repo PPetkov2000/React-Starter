@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+module.exports = `import { useEffect, useState } from "react"
 
 const PREFIX = "instagram-clone-"
 
@@ -24,3 +24,4 @@ const useLocalStorage = (key, initialValue) => {
 }
 
 export default useLocalStorage
+`
