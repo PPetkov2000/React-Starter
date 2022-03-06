@@ -98,8 +98,8 @@ const updateTemplates = () => {
 }
 
 const addReduxTemplates = () => {
-  const promises = []
   return new Promise((resolve) => {
+    const promises = []
     Object.keys(reduxTemplates).forEach((fileName, i) => {
       promises[i] = new Promise((res) => {
         if (typeof reduxTemplates[fileName] === "object") {

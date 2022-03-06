@@ -11,4 +11,10 @@ module.exports = `.forbidden,
     font-size: 3rem;
   }
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 `

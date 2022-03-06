@@ -1,0 +1,157 @@
+module.exports = `@mixin button-bg($bgColor: $primary-color) {
+  background-color: $bgColor;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: $main-transition;
+
+  &:hover {
+    background: darken($bgColor, 8%);
+  }
+
+  &:active {
+    background: darken($bgColor, 20%);
+  }
+}
+
+@mixin button-variant($color) {
+  background-color: $color;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: $main-transition;
+  padding: 0.7rem;
+  margin: 1rem;
+  font-weight: bold;
+  border-radius: 0.3rem;
+
+  &:hover {
+    background-color: darken($color, 10%);
+  }
+
+  &--bordered {
+    background-color: transparent;
+    border: 1px solid $color;
+    color: $color;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+    transition: $main-transition;
+
+    &:hover {
+      background-color: $color;
+      color: white;
+    }
+
+    &-animated {
+      background-color: transparent;
+      border: 1px solid $color;
+      color: $color;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      transition: $main-transition;
+
+      &::before {
+        content: "";
+        width: 0;
+        height: 100%;
+        background-color: $primary-color;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      &:hover {
+        color: white;
+
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@mixin badge-variant($bgColor, $color: #fff) {
+  background-color: $bgColor;
+  color: $color;
+  padding: 0.3rem 1rem;
+  border-radius: 1rem;
+
+  &--rounded {
+    background-color: $bgColor;
+    color: $color;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+@mixin icon-variant($color, $hoverColor: $primary-color) {
+  background-color: transparent;
+  color: $color;
+  transition: $main-transition;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+    color: $hoverColor;
+  }
+}
+
+@mixin alert-variant($bgColor) {
+  background-color: $bgColor;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  position: relative;
+
+  &::after {
+    content: "X";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}
+
+@mixin accordion-variant($bgColor, $color: #fff) {
+  background-color: $bgColor;
+  color: $color;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: $main-transition;
+
+  &.active {
+    background-color: darken($bgColor, 10%);
+
+    &:after {
+      content: "\\2212";
+    }
+  }
+
+  &:hover {
+    background-color: darken($bgColor, 10%);
+  }
+
+  &:after {
+    content: "\\002B";
+    color: #000;
+    font-weight: bold;
+    float: right;
+    margin-left: 0.5rem;
+  }
+}
+`

@@ -1,0 +1,15 @@
+module.exports = `@import "utilities/variables";
+@import "utilities/mixins";
+
+@import "base/reset";
+@import "base/typography";
+
+@import "layout/navigation";
+@import "layout/footer";
+
+@import "components/buttons";
+@import "components/badges";
+@import "components/icons";
+@import "components/alerts";
+@import "components/accordion";
+`
