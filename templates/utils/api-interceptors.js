@@ -2,8 +2,7 @@ module.exports = `const addInterceptors = (instance) => {
   instance.interceptors.request.use(
     (request) => {
       if (localStorage.getItem("authUser")) {
-        request.headers.Authorization =
-          "Bearer " + JSON.parse(localStorage.getItem("authUser")).token
+        request.headers.Authorization = "Bearer " + JSON.parse(localStorage.getItem("authUser")).token
       }
       return request
     },

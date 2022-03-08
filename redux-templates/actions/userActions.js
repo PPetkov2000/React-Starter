@@ -27,24 +27,15 @@ import {
 } from "../constants/userConstants"
 import actionsErrorHandler from "../utils/actionsErrorHandler"
 
-export const register =
-  (username, email, password, confirmPassword) => async (dispatch) => {
+export const register = (username, email, password, confirmPassword) => async (dispatch) => {
     try {
       dispatch({ type: USER_REGISTER_REQUEST })
-      const { data } = await api.post("/api/users/register", {
-        username,
-        email,
-        password,
-        confirmPassword,
-      })
+      const { data } = await api.post("/api/users/register", { username, email, password, confirmPassword })
       dispatch({ type: USER_REGISTER_SUCCESS, payload: data })
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
       localStorage.setItem("userInfo", JSON.stringify(data))
     } catch (error) {
-      dispatch({
-        type: USER_REGISTER_FAIL,
-        payload: actionsErrorHandler(error),
-      })
+      dispatch({ type: USER_REGISTER_FAIL, payload: actionsErrorHandler(error) })
     }
   }
 
@@ -67,17 +58,15 @@ export const logout = () => (dispatch) => {
   document.location.href = "/login"
 }
 
-export const listUsers =
-  (pageNumber = "") =>
-    async (dispatch) => {
-      try {
-        dispatch({ type: USER_LIST_REQUEST })
-        const { data } = await api.get(\`/api/users?pageNumber=\${pageNumber}\`)
-        dispatch({ type: USER_LIST_SUCCESS, payload: data })
-      } catch (error) {
-        dispatch({ type: USER_LIST_FAIL, payload: actionsErrorHandler(error) })
-      }
+export const listUsers = (pageNumber = "") => async (dispatch) => {
+    try {
+      dispatch({ type: USER_LIST_REQUEST })
+      const { data } = await api.get(\`/api/users?pageNumber=\${pageNumber}\`)
+      dispatch({ type: USER_LIST_SUCCESS, payload: data })
+    } catch (error) {
+      dispatch({ type: USER_LIST_FAIL, payload: actionsErrorHandler(error) })
     }
+  }
 
 export const getUserDetails = (userId) => async (dispatch) => {
   try {
@@ -119,10 +108,7 @@ export const updateUserProfile = (user) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
     localStorage.setItem("userInfo", JSON.stringify(data))
   } catch (error) {
-    dispatch({
-      type: USER_UPDATE_PROFILE_FAIL,
-      payload: actionsErrorHandler(error),
-    })
+    dispatch({ type: USER_UPDATE_PROFILE_FAIL, payload: actionsErrorHandler(error) })
   }
 }
 `

@@ -3,6 +3,6 @@ module.exports = `$variants: (
   secondary: $secondary-color,
   dark: $dark-color,
   success: $success-color,
-  danger: $danger-color,
+  danger: $danger-color
 );
 `

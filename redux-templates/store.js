@@ -29,11 +29,7 @@ const initialState = {
   },
 }
 
-const store = createStore(
-  reducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(thunk))
-)
+const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store
 `
