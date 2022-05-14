@@ -75,7 +75,6 @@ const updateTemplates = () => {
           fs.mkdir(`${appDirectory}/src/${fileName}`, (err) => {
             if (err) { console.log(err) }
             Object.keys(templates[fileName]).forEach((file) => {
-              console.log(`${appDirectory}/src/${fileName}/${file}`)
               fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, templates[fileName][file], (err) => {
                 if (err) { console.log(err) }
                 res()
