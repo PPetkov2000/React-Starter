@@ -19,13 +19,13 @@ program
   .parse(process.argv)
 
 const run = async () => {
-  const success = await createReactApp()
-  if (!success) {
-    console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
-    return false;
-  }
+  // const success = await createReactApp()
+  // if (!success) {
+  //   console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
+  //   return false
+  // }
   await cdIntoNewApp()
-  await installPackages()
+  // await installPackages()
   await updateTemplates()
   if (program.opts().redux) {
     await addReduxTemplates()
@@ -58,8 +58,8 @@ const cdIntoNewApp = () => {
 
 const installPackages = () => {
   return new Promise((resolve) => {
-    console.log(`\nInstalling react-router-dom, axios, node-sass${program.opts().redux ? ", react-redux, redux, redux-thunk, redux-devtools-extension" : ""}\n`.cyan)
-    shell.exec(`npm install --save react-router-dom axios node-sass${program.opts().redux ? " react-redux redux redux-thunk redux-devtools-extension" : ""}`, () => {
+    console.log(`\nInstalling react-router-dom, axios, sass${program.opts().redux ? ", react-redux, redux, redux-thunk, redux-devtools-extension" : ""}\n`.cyan)
+    shell.exec(`npm install --save react-router-dom axios sass${program.opts().redux ? " react-redux redux redux-thunk redux-devtools-extension" : ""}`, () => {
       console.log("\nFinished installing packages\n".green)
       resolve()
     })
@@ -73,10 +73,11 @@ const updateTemplates = () => {
       promises[i] = new Promise(res => {
         if (typeof templates[fileName] === "object") {
           fs.mkdir(`${appDirectory}/src/${fileName}`, (err) => {
-            if (err) { return console.log(err) }
+            if (err) { console.log(err) }
             Object.keys(templates[fileName]).forEach((file) => {
+              console.log(`${appDirectory}/src/${fileName}/${file}`)
               fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, templates[fileName][file], (err) => {
-                if (err) { return console.log(err) }
+                if (err) { console.log(err) }
                 res()
               })
             })
@@ -87,7 +88,7 @@ const updateTemplates = () => {
             shell.mv(`${appDirectory}/src/${file}.css`, `${appDirectory}/src/${fileName}`)
           }
           fs.writeFile(`${appDirectory}/src/${fileName}`, templates[fileName], (err) => {
-            if (err) { return console.log(err) }
+            if (err) { console.log(err) }
             res()
           })
         }
@@ -106,16 +107,16 @@ const addReduxTemplates = () => {
           if (fs.existsSync(`${appDirectory}/src/${fileName}`)) {
             Object.keys(reduxTemplates[fileName]).forEach((file) => {
               fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, reduxTemplates[fileName][file], (err) => {
-                if (err) { return console.log(err) }
+                if (err) { console.log(err) }
                 res()
               })
             })
           } else {
             fs.mkdir(`${appDirectory}/src/${fileName}`, (err) => {
-              if (err) { return console.log(err) }
+              if (err) { console.log(err) }
               Object.keys(reduxTemplates[fileName]).forEach((file) => {
                 fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, reduxTemplates[fileName][file], (err) => {
-                  if (err) { return console.log(err) }
+                  if (err) { console.log(err) }
                   res()
                 })
               })
@@ -123,7 +124,7 @@ const addReduxTemplates = () => {
           }
         } else {
           fs.writeFile(`${appDirectory}/src/${fileName}`, reduxTemplates[fileName], (err) => {
-            if (err) { return console.log(err) }
+            if (err) { console.log(err) }
             res()
           })
         }

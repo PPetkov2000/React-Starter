@@ -1,7 +1,7 @@
 module.exports = {
   "index.js": require("./index.js"),
   "App.js": require("./App.js"),
-  "App.scss": require("./stylesheets/App.stylesheet.js"),
+  "App.scss": require("./App.stylesheet.js"),
   "components": {
     "Loader.js": require("./components/Loader.js"),
     "Message.js": require("./components/Message.js"),
@@ -36,25 +36,25 @@ module.exports = {
   },
   "styles": {
     "base": {
-      "reset.scss": require("./stylesheets/styles/base/reset.stylesheet.js"),
-      "typography.scss": require("./stylesheets/styles/base/typography.stylesheet.js"),
+      "reset.scss": require("./styles/base/reset.stylesheet.js"),
+      "typography.scss": require("./styles/base/typography.stylesheet.js"),
     },
     "components": {
-      "accordion.scss": require("./stylesheets/styles/components/accordion.stylesheet.js"),
-      "alerts.scss": require("./stylesheets/styles/components/alerts.stylesheet.js"),
-      "badges.scss": require("./stylesheets/styles/components/badges.stylesheet.js"),
-      "buttons.scss": require("./stylesheets/styles/components/buttons.stylesheet.js"),
-      "icons.scss": require("./stylesheets/styles/components/icons.stylesheet.js"),
-      "component-variants.scss": require("./stylesheets/styles/components/component-variants.stylesheet.js"),
+      "accordion.scss": require("./styles/components/accordion.stylesheet.js"),
+      "alerts.scss": require("./styles/components/alerts.stylesheet.js"),
+      "badges.scss": require("./styles/components/badges.stylesheet.js"),
+      "buttons.scss": require("./styles/components/buttons.stylesheet.js"),
+      "icons.scss": require("./styles/components/icons.stylesheet.js"),
+      "component-variants.scss": require("./styles/components/component-variants.stylesheet.js"),
     },
     "layout": {
-      "navigation.scss": require("./stylesheets/styles/layout/navigation.stylesheet.js"),
-      "footer.scss": require("./stylesheets/styles/layout/footer.stylesheet.js"),
+      "navigation.scss": require("./styles/layout/navigation.stylesheet.js"),
+      "footer.scss": require("./styles/layout/footer.stylesheet.js"),
     },
     "utilities": {
-      "variables.scss": require("./stylesheets/styles/utilities/variables.stylesheet.js"),
-      "mixins.scss": require("./stylesheets/styles/utilities/mixins.stylesheet.js"),
+      "variables.scss": require("./styles/utilities/variables.stylesheet.js"),
+      "mixins.scss": require("./styles/utilities/mixins.stylesheet.js"),
     },
-    "main.scss": require("./stylesheets/styles/main.stylesheet.js")
+    "main.scss": require("./styles/main.stylesheet.js")
   }
 }
