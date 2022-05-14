@@ -19,13 +19,13 @@ program
   .parse(process.argv)
 
 const run = async () => {
-  // const success = await createReactApp()
-  // if (!success) {
-  //   console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
-  //   return false
-  // }
+  const success = await createReactApp()
+  if (!success) {
+    console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
+    return false
+  }
   await cdIntoNewApp()
-  // await installPackages()
+  await installPackages()
   await updateTemplates()
   if (program.opts().redux) {
     await addReduxTemplates()
