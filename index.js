@@ -73,10 +73,10 @@ const updateTemplates = () => {
       promises[i] = new Promise(res => {
         if (typeof templates[fileName] === "object") {
           fs.mkdir(`${appDirectory}/src/${fileName}`, (err) => {
-            if (err) { console.log(err) }
+            if (err) { return console.log(err) }
             Object.keys(templates[fileName]).forEach((file) => {
               fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, templates[fileName][file], (err) => {
-                if (err) { console.log(err) }
+                if (err) { return console.log(err) }
                 res()
               })
             })
@@ -87,7 +87,7 @@ const updateTemplates = () => {
             shell.mv(`${appDirectory}/src/${file}.css`, `${appDirectory}/src/${fileName}`)
           }
           fs.writeFile(`${appDirectory}/src/${fileName}`, templates[fileName], (err) => {
-            if (err) { console.log(err) }
+            if (err) { return console.log(err) }
             res()
           })
         }
@@ -106,16 +106,16 @@ const addReduxTemplates = () => {
           if (fs.existsSync(`${appDirectory}/src/${fileName}`)) {
             Object.keys(reduxTemplates[fileName]).forEach((file) => {
               fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, reduxTemplates[fileName][file], (err) => {
-                if (err) { console.log(err) }
+                if (err) { return console.log(err) }
                 res()
               })
             })
           } else {
             fs.mkdir(`${appDirectory}/src/${fileName}`, (err) => {
-              if (err) { console.log(err) }
+              if (err) { return console.log(err) }
               Object.keys(reduxTemplates[fileName]).forEach((file) => {
                 fs.writeFile(`${appDirectory}/src/${fileName}/${file}`, reduxTemplates[fileName][file], (err) => {
-                  if (err) { console.log(err) }
+                  if (err) { return console.log(err) }
                   res()
                 })
               })
@@ -123,7 +123,7 @@ const addReduxTemplates = () => {
           }
         } else {
           fs.writeFile(`${appDirectory}/src/${fileName}`, reduxTemplates[fileName], (err) => {
-            if (err) { console.log(err) }
+            if (err) { return console.log(err) }
             res()
           })
         }
